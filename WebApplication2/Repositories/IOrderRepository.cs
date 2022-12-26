@@ -10,7 +10,7 @@ namespace WebApplication2.Repositories
     {
         public Task<IEnumerable<Order>> GetOrders();
         public Task<Order> GetOrderById(Guid id);
-        public Task<Order> Checkout(Order order);
+        public Task<Order> Checkout(Guid userId);
         public Task<Order> UpdateOrder(UpdateOrderCommand command);
         public Task<Order> DeleteOrder(Guid orderId);
     }

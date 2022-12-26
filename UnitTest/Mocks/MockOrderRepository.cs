@@ -54,8 +54,10 @@ namespace UnitTest.Mocks
                 return order;
             });
 
-            mockRepo.Setup(r => r.Checkout(It.IsAny<Order>())).ReturnsAsync((Order order) =>
+            mockRepo.Setup(r => r.Checkout(It.IsAny<Guid>())).ReturnsAsync((Guid userId) =>
             {
+                var order = orders.Where(x => x.CartItems.Any(x => x.UserId == userId) && x.Status == Status.Pending).FirstOrDefault();
+
                 order.Status = Status.Processed;
 
                 return order;

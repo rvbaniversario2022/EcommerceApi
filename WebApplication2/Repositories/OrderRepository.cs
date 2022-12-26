@@ -99,10 +99,12 @@ namespace WebApplication2.Repositories
             }
         }
 
-        public async Task<Order> Checkout(Order order)
+        public async Task<Order> Checkout(Guid userId)
         {
             try
             {
+                var order = _context.Orders.Where(x => x.CartItems.Any(x => x.UserId == userId) && x.Status == Status.Pending).FirstOrDefault();
+
                 if (order == null)
                 {
                     var ex = new ArgumentNullException($"{nameof(Checkout)} order must not be null");
@@ -115,7 +117,7 @@ namespace WebApplication2.Repositories
                 {
                     order.Status = Status.Processed;
 
-                    _context.Orders.Update(order);
+                    _context.Update(order);
 
                     await _context.SaveChangesAsync();
 

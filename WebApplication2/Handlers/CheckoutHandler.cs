@@ -16,7 +16,7 @@ namespace WebApplication2.Handlers
 
         public Task<Order> Handle(CheckoutCommand command, CancellationToken cancellationToken)
         {
-            return _orderRepo.Checkout(command.Order);
+            return _orderRepo.Checkout(command.UserId);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace WebApplication2.Controllers
                 return BadRequest($"No Pending Order Found For User Id: {checkoutDto.UserId}");
             }
 
-            return Ok(await _mediator.Send(new CheckoutCommand { Order = order}));
+            return Ok(await _mediator.Send(new CheckoutCommand { UserId = checkoutDto.UserId}));
         }
     }
 }

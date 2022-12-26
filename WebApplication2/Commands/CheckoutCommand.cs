@@ -9,6 +9,6 @@ namespace WebApplication2.Commands
 {
     public record CheckoutCommand : IRequest<Order>
     {
-        public Order Order { get; set; }
+        public Guid UserId { get; set; }
     }
 }

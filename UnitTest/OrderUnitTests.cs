@@ -50,13 +50,10 @@ namespace UnitTest
         [Fact]
         public async Task CheckoutTest()
         {
-            var orders = MockOrderRepository.GenerateOrders();
             var userId = new Guid("0A82109D-A736-41BB-8A8A-2F94AF66AD50");
 
-            var order = orders.Where(x => x.CartItems.Any(x => x.UserId == userId) && x.Status == Status.Pending).FirstOrDefault();
-
             var handler = new CheckoutHandler(_mockRepo.Object);
-            var result = await handler.Handle(new CheckoutCommand { Order = order }, CancellationToken.None);
+            var result = await handler.Handle(new CheckoutCommand { UserId = userId }, CancellationToken.None);
 
             result.Status.Should().Be(Status.Processed);
         }

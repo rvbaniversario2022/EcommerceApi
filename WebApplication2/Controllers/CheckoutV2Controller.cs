@@ -39,7 +39,7 @@ namespace WebApplication2.Controllers
                 return BadRequest();
             }
 
-            return Ok(await _mediator.Send(new CheckoutCommand { Order = order }));
+            return Ok(await _mediator.Send(new CheckoutCommand { UserId = checkoutDto.UserId }));
         }
     }
 }
